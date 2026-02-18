@@ -24,19 +24,19 @@ NGROK_AUTHTOKEN=<token> cargo run
    use ngrok::config::ForwarderBuilder;
    use url::Url;
 
-   async fn forward_to_app() -> Result<Forwarder<HttpTunnel>, Box<dyn std::error::Error + Send + Sync>> {
+   async fn forward_to_app() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
        let sess = ngrok::Session::builder()
            .authtoken_from_env()
            .connect()
            .await?;
 
-       let forwarder = sess
+       let listener = sess
            .http_endpoint()
            .listen_and_forward(Url::parse("http://localhost:8080")?)
            .await?;
 
-       println!("Ingress established at: {:?}", forwarder.url());
-       Ok(forwarder)
+       println!("Ingress established at: {:?}", listener.url());
+       Ok(())
    }
    ```
 
