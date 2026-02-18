@@ -6,7 +6,7 @@ use url::Url;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let app = Router::new().route("/", get(|| async { "Hello from rust-sdk-example!\n" }));
+    let app = Router::new().route("/", get(|| async { "Hello from ngrok-rust!\n" }));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
     tokio::spawn(async move {
