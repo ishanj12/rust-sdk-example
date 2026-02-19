@@ -18,7 +18,13 @@ NGROK_AUTHTOKEN=<token> cargo run
    cargo add ngrok
    ```
 
-2. Add the following to your app:
+2. Set your authtoken:
+
+   ```sh
+   export NGROK_AUTHTOKEN=<token>
+   ```
+
+3. Add the following to your app:
 
    ```rust
    use ngrok::config::ForwarderBuilder;
