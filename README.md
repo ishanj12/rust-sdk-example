@@ -30,12 +30,17 @@ NGROK_AUTHTOKEN=<token> cargo run
            .connect()
            .await?;
 
-       let listener = sess
+       let mut listener = sess
            .http_endpoint()
            .listen_and_forward(Url::parse("http://localhost:8080")?)
            .await?;
 
        println!("Ingress established at: {:?}", listener.url());
+
+       tokio::spawn(async move {
+           let _ = listener.join().await;
+       });
+
        Ok(())
    }
    ```

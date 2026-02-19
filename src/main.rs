@@ -20,13 +20,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         .connect()
         .await?;
 
-    let listener = sess
+    let mut listener = sess
         .http_endpoint()
         .listen_and_forward(Url::parse("http://localhost:8080")?)
         .await?;
 
     println!("Ingress established at: {:?}", listener.url());
 
-    tokio::signal::ctrl_c().await?;
+    let _ = listener.join().await;
     Ok(())
 }
