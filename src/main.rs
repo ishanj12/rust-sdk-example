@@ -29,7 +29,7 @@ async fn connect_ngrok() -> Result<(), Box<dyn std::error::Error + Send + Sync>>
 
         // Uncomment below to use a specific domain.
         // https://dashboard.ngrok.com/domains
-        // .domain("<your_domain_here>")
+        // .domain("hello-world.your-domain.com")
 
         // Uncomment below to load balance across multiple instances of your app.
         // https://ngrok.com/docs/universal-gateway/endpoint-pooling/
